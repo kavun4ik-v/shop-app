@@ -1,8 +1,10 @@
-export default function Navigation() {
+import type { Props } from "../types";
+
+export default function Navigation({ setView }: Props) {
   return (
     <nav>
-      <a id="shopLink" href="#">Shop</a> |
-      <a id="cartLink" href="#">Cart</a>
+      <button onClick={() => setView('shop')}>Shop</button> |
+      <button onClick={() => setView('cart')}>Cart</button>
     </nav>
   );
 }

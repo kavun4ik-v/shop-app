@@ -13,3 +13,8 @@ export type Shop ={
   id: number;
   name: string;
 }
+
+export type Props = {
+  setView: (view: 'shop' | 'cart') => void;
+};
+

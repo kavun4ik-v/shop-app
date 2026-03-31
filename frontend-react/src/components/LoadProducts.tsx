@@ -9,9 +9,7 @@ export default function LoadProducts({ shopId }: { shopId: number | null }) {
   useEffect(() => {
     if (!shopId) return;
 
-    getProducts(shopId)
-      .then(res => res.json())
-      .then(data => setProducts(data));
+    getProducts(shopId).then(data => setProducts(data));
   }, [shopId]); // 🔥 ОЦЕ ГОЛОВНЕ
 
    const handleAdd = (productId: number, quantity: number) => {
