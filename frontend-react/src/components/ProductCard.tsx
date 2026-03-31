@@ -1,7 +1,8 @@
 import { useState } from "react";
+import type { ProductCardProps } from "../types";
 
-export default function ProductCard({ product, onAdd }: any) {
-  const [quantity, setQuantity] = useState(1);
+export default function ProductCard({ product, onAdd }: ProductCardProps) {
+  const [quantity, setQuantity] = useState<number>(1);
 
   return (
     <div className="product">

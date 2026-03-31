@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import type { Product } from "../types";
+import { getProducts } from "../services/api";
 
-const API = import.meta.env.VITE_API_URL;
-
-export default function LoadProducts({ shopId }: any) {
-  const [products, setProducts] = useState([]);
+export default function LoadProducts({ shopId }: { shopId: number | null }) {
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (!shopId) return;
 
-    fetch(`${API}/products?shopId=${shopId}`)
+    getProducts(shopId)
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [shopId]); // 🔥 ОЦЕ ГОЛОВНЕ
 
    const handleAdd = (productId: number, quantity: number) => {
-    console.log("ADD:", productId, quantity);
+    //console.log("ADD:", productId, quantity);
     localStorage.setItem(`cart`, JSON.stringify({
       ...JSON.parse(localStorage.getItem(`cart`) || "{}"),
       [productId]: (JSON.parse(localStorage.getItem(`cart`) || "{}")[productId] || 0) + quantity
