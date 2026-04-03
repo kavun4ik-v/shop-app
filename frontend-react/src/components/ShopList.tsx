@@ -13,7 +13,7 @@ export default function ShopList({ onSelectShop, activeShopId }: any) {
   }, []);
 
   return (
-    <div className="shop">
+    <div className="shop-list">
       {shops.map((shop: Shop) => (
         <div
           key={shop.id}

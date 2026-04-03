@@ -3,8 +3,8 @@ import ProductCard from "./ProductCard";
 import type { Product } from "../types";
 import { getProducts } from "../services/api";
 
-export default function LoadProducts({ shopId }: { shopId: number | null }) {
-  const [products, setProducts] = useState<Product[]>([]);
+export default function LoadProducts({ shopId, setProducts, products }: { shopId: number | null , setProducts: (products: Product[]) => void, products: Product[] }) {
+  //const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (!shopId) return;

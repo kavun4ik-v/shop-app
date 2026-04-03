@@ -1,3 +1,5 @@
+import e from "cors";
+
 export type Product = {
   id: number;
   name: string;
@@ -18,3 +20,7 @@ export type Props = {
   setView: (view: 'shop' | 'cart') => void;
 };
 
+export type CartItem = {
+  id: number;
+  quantity: number;
+}
