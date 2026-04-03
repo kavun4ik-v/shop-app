@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import getAllProducts from './modules/getAllProducts';
 import createOrder from './modules/createOrder';
 import getAllShops from './modules/getAllShops';
+import getProductByIds from './modules/getProductsByIds';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import pg from './modules/database';
@@ -28,6 +29,10 @@ app.get('/shops', async (req: Request, res: Response): Promise<void> => {
 
 app.post('/orders', async (req: Request, res: Response): Promise<void> => {
   await createOrder(req, res);
+});
+
+app.post('/products/by-ids', async (req: Request, res: Response): Promise<void> => {
+  await getProductByIds(req, res);
 });
 
 
