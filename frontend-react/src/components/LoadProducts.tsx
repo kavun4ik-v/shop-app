@@ -3,9 +3,19 @@ import ProductCard from "./ProductCard";
 import type { Product } from "../types";
 import { getProducts } from "../services/api";
 
-export default function LoadProducts({ shopId, setProducts, products }: { shopId: number | null , setProducts: (products: Product[]) => void, products: Product[] }) {
-  //const [products, setProducts] = useState<Product[]>([]);
+type CartType = Record<number, number>;
 
+export default function LoadProducts({ 
+    shopId, 
+    setProducts, 
+    products,
+    setCart }: { 
+      shopId: number | null ,
+      setProducts: (products: Product[]) => void, 
+      products: Product[],
+      setCart: React.Dispatch<React.SetStateAction<CartType>>
+    }) {
+  
   useEffect(() => {
     if (!shopId) return;
 
@@ -13,12 +23,18 @@ export default function LoadProducts({ shopId, setProducts, products }: { shopId
   }, [shopId]); // 🔥 ОЦЕ ГОЛОВНЕ
 
    const handleAdd = (productId: number, quantity: number) => {
-    //console.log("ADD:", productId, quantity);
-    localStorage.setItem(`cart`, JSON.stringify({
-      ...JSON.parse(localStorage.getItem(`cart`) || "{}"),
-      [productId]: (JSON.parse(localStorage.getItem(`cart`) || "{}")[productId] || 0) + quantity
-    }));
-  };
+      setCart((prev) => {
+        const updated = { ...prev };
+
+        if (updated[productId]) {
+          updated[productId] += quantity;
+        } else {
+          updated[productId] = quantity;
+        }
+
+        return updated;
+      });
+    };
 
   return (
         <div className="products">

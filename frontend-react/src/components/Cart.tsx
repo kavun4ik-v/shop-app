@@ -1,52 +1,53 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../services/api";
 import { getProductsByIds } from "../services/api";
 import type { Product } from "../types";
 
-export default function Cart() {
+export default function Cart({cart, setCart, setView}: any) {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
-
-  const cartItems = localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart")!)
-    : {};
-
-    
+   
 
   useEffect(() => {
-    async function load() {
-      const ids = Object.keys(cartItems).map(Number);
+  async function load() {
+    const ids = Object.keys(cart).map(Number);
+
+    if (ids.length === 0) {
+      setAllProducts([]);
+      return;
+    }
+
       const data = await getProductsByIds(ids);
       setAllProducts(data);
     }
-    load();
-  }, []);
 
-  const cartArray = Object.entries(cartItems).map(([id, quantity]) => {
+    load();
+  }, [cart]);
+
+  const cartArray = Object.entries(cart).map(([id, quantity]) => {
     const product = allProducts.find(p => p.id === Number(id));
 
     return {
       id: Number(id),
-      quantity,
+      quantity: Number(quantity),
       name: product?.name,
       price: product?.price
     };
   });
 
   const total = cartArray.reduce((sum, item) => {
-  return sum + (item.quantity as number) * (item.price ?? 0);
+  return sum + item.quantity  * (item.price ?? 0);
 }, 0);
 
   return (
     <div className="cart">
       <h2>Cart</h2>
 
-      {Object.keys(cartItems).length === 0 ? (
-        <p>Cart is empty</p>
+      {Object.keys(cart).length === 0 ? (
+        <p>Кошик порожній</p>
       ) : (
         <ul>
           {cartArray.map(item => (
             <li key={item.id}>
-              {item.name} — {item.quantity as number} шт — {item.price} грн. Разом: <b>{(item.quantity as number) * (item.price as number)}</b> грн.   
+              {item.name} — {item.quantity} шт — {item.price} грн. Разом: <b>{item.quantity * (item.price ?? 0)}</b> грн.   
             </li>
           ))}
         </ul>
@@ -54,6 +55,11 @@ export default function Cart() {
       <p>
         <b>Загальна сума: {total} грн</b>
       </p>
+      <div className="cartButtons">
+        <button onClick={() => setView('shop')}>Повернутися до магазину</button>
+        <button onClick={() => setCart({})}>Очистити кошик</button>
+        <button onClick={() => setView('order')}>Оформити замовлення</button>
+      </div>
     </div>
   );
 }

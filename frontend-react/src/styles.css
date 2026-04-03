@@ -140,7 +140,6 @@ nav a:hover {
 
 .cart div {
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
 }
 
 .cart h3 {
@@ -149,7 +148,7 @@ nav a:hover {
 }
 
 .cart button {
-    background: #dc3545;
+    background: #3388f8;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -161,7 +160,7 @@ nav a:hover {
 }
 
 .cart button:hover {
-    background: #c82333;
+    background: #5fa3fc;
 }
 
 .cart button#backToShop {
