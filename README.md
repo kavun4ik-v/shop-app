@@ -18,6 +18,7 @@ test-js-fullstack/
 │   └── src/
 │       ├── app.ts    # Main frontend script
 │       └── styles.css
+├── frontend-react/         # Frontend code use react framework
 └── package.json      # Root package.json for scripts
 ```
 
