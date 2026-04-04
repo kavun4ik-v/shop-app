@@ -37,14 +37,18 @@ export default function LoadProducts({
     };
 
   return (
-        <div className="products">
-      {products.map((product: any) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          onAdd={handleAdd}
-            />
+    <div className="products-container">
+      {shopId ? <h3>Продукти магазину {shopId}</h3> : null}
+        <div className="products">        
+          
+          {products.map((product: any) => (
+            <ProductCard
+                key={product.id}
+                product={product}
+                onAdd={handleAdd}
+                  />
         ))}
         </div>
+    </div>
   );
 }

@@ -25,15 +25,17 @@ function App() {
   }, [cart]);  
  
   return (
-    <div>
+    <div className="app">
       <Navigation setView={setView} />
         {view === 'shop' && (
           <>
+            <div className="layout">
             <ShopList onSelectShop={setShopId} activeShopId={shopId} />
             <LoadProducts shopId={shopId} 
                 setProducts={setProducts}
                 products={products}
                 setCart={setCart}/>
+            </div>
           </>
         )}
         {view === 'cart' && (

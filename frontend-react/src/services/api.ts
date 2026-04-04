@@ -35,3 +35,8 @@ export async function createOrder(data: any) {
 
   return res.json();
 }
+
+export async function getShops() {
+  const res = await fetch(`${API}/shops`);
+  return res.json();
+}
