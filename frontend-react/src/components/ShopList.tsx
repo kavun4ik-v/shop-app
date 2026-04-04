@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getShops } from "../services/api";
 import type { Shop } from "../types";
 
-const API = import.meta.env.VITE_API_URL;
 
 export default function ShopList({ onSelectShop, activeShopId }: any) {
   const [shops, setShops] = useState([]);
