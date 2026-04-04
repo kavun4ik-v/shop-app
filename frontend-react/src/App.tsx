@@ -3,6 +3,7 @@ import ShopList from "./components/ShopList";
 import LoadProducts from "./components/LoadProducts";
 import Navigation from "./components/Navigation";
 import Cart from "./components/Cart";
+import OrderForm from "./components/OrderForm";
 import type { Product } from "./types";
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
         )}
         {view === 'cart' && (
           <Cart cart={cart} setCart={setCart} setView={setView}/>
+        )}
+        {view === 'order' && (
+          <OrderForm setView={setView} cart={cart} shopId={shopId} setCart={setCart}/>
         )}
 
     </div>

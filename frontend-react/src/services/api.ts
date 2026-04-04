@@ -17,6 +17,21 @@ export async function getProductsByIds(ids: number[]) {
     },
     body: JSON.stringify({ ids })
   });
-  console.log(ids);
+  return res.json();
+}
+
+export async function createOrder(data: any) {
+  const res = await fetch(`${API}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to create order");
+  }
+
   return res.json();
 }
