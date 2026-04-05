@@ -130,10 +130,15 @@ const createOrder = async (req: OrderRequest, res: Response): Promise<void> => {
     console.log('✅ Transaction completed');
     res.json({ orderId });
     
-  } catch (err) {
-    console.error('❌ Error creating order:', err);
-    res.status(500).json({ error: 'Error creating order' });
-  }
+  } catch (err: any) {
+      console.error('❌ Error creating order:', err);
+
+      if (!res.headersSent) {
+        res.status(500).json({
+          error: err.message || 'Error creating order'
+        });
+      }
+    }
 };
 
 export default createOrder;
