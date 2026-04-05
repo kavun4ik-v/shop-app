@@ -27,24 +27,23 @@ function App() {
   return (
     <div className="app">
       <Navigation setView={setView} />
-        {view === 'shop' && (
-          <>
-            <div className="layout">
-            <ShopList onSelectShop={setShopId} activeShopId={shopId} />
-            <LoadProducts shopId={shopId} 
-                setProducts={setProducts}
-                products={products}
-                setCart={setCart}/>
-            </div>
-          </>
-        )}
-        {view === 'cart' && (
-          <Cart cart={cart} setCart={setCart} setView={setView}/>
-        )}
-        {view === 'order' && (
-          <OrderForm setView={setView} cart={cart} shopId={shopId} setCart={setCart}/>
-        )}
-
+        <div className="layout">
+          {view === 'shop' && (
+            <>              
+              <ShopList onSelectShop={setShopId} activeShopId={shopId} />
+              <LoadProducts shopId={shopId} 
+                  setProducts={setProducts}
+                  products={products}
+                  setCart={setCart}/>
+            </>
+          )}
+          {view === 'cart' && (
+            <Cart cart={cart} setCart={setCart} setView={setView}/>
+          )}
+          {view === 'order' && (
+            <OrderForm setView={setView} cart={cart} shopId={shopId} setCart={setCart}/>
+          )}
+      </div>
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function Cart({cart, setCart, setView}: any) {
 
   return (
     <div className="cart">
-      <h2>Cart</h2>
+      <h2>Кошик</h2>
 
       {Object.keys(cart).length === 0 ? (
         <p>Кошик порожній</p>

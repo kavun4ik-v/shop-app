@@ -47,7 +47,6 @@ nav a:hover {
 .layout {
     display: flex;
     align-items: flex-start;
-    /* важливо */
     gap: 20px;
 }
 
@@ -158,10 +157,14 @@ nav a:hover {
 }
 
 .cart {
-    background: white;
-    padding: 20px;
+    background: #f8f9fa;
     border-radius: 8px;
     border: 1px solid #dee2e6;
+    width: 100%;
+        /* ключове */
+        margin: 0 auto;
+        /* центрування */
+        padding: 20px;
 }
 
 .cart h2 {
@@ -257,25 +260,7 @@ nav a:hover {
     display: none !important;
 }
 
-@media (max-width: 768px) {
-    .main {
-        flex-direction: column;
-    }
 
-    .shops,
-    .products {
-        width: 100%;
-    }
-
-    .products {
-        grid-template-columns: 1fr;
-    }
-
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
 
 .nav-button {
     padding: 12px;
@@ -301,10 +286,22 @@ nav a:hover {
     border-color: #007bff;
 }
 
-.cart {
-    margin: 10px 10px 10px 10px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .shops,
+    .products {
+        width: 100%;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;  
+    }
 }
